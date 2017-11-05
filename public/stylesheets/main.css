@@ -1,0 +1,20 @@
+.thumbnail>img{
+	height: 100%;
+	width: 100%;
+}
+.show{
+	height: 500px;
+	width: cover;
+}
+.indexImage .thumbnail img{
+	height: 200px;
+}
+.thumbnail {
+	padding: 0;
+}
+.thumbnail .caption-full{
+	padding: 9px;
+}
+.delete-form{
+	display: inline;
+}

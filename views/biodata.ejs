@@ -1,0 +1,23 @@
+<% include partials/header%>
+<h1>Username :  <%=biodata.username%></h1>
+Phtotos : <br>
+<img src="<%=biodata.image%>"><br>
+Email : <%=biodata.email%><br>
+Birthday : <%=biodata.birthday%><br>
+Gender : <%=biodata.gender%><br>
+<div class="row text-center indexImage" style="display:flex;flex-wrap:wrap">
+        <% story.forEach(function(story){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                <%console.log(story.image)%>
+                   <div class="caption">
+                       <h4><%= story.name %></h4>
+                   </div>
+                   <p>
+                       <a href="/campgrounds/<%= story._id %>" class="btn btn-primary">More Info</a>
+                   </p>
+                </div>
+            </div>
+        <% }); %>
+		</div>
+<% include partials/footer%>

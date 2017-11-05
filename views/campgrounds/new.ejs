@@ -1,0 +1,20 @@
+<% include ../partials/header%>
+
+<div class="container">
+	<div class="row">
+	<h1 style="text-align:center">Share your Story</h1>
+		<div style="width:30%; margin:25px auto">
+			<form action="/campgrounds" method="post">
+				<div class="form-group">
+					<input type="text" placeholder="Title" name="name" class="form-control">
+				</div>
+				<div class="form-group">
+					<textarea rows="4" cols="48" placeholder="description" name="description"></textarea>
+				</div>
+					<button class="btn btn-success btn-lg btn-block">Submit</button>
+			</form>
+			<a href="/campgrounds">Go Back</a>
+		</div>
+	</div>
+</div>
+<% include ../partials/footer%>
