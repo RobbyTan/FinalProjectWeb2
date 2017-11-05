@@ -51,9 +51,9 @@ app.use(function(req,res,next){
 	// untuk memberikan akses current User ke semua
 })
 app.use(indexRoutes);
-app.use("/campgrounds",campgroundRoutes);
+app.use("/story",campgroundRoutes);
 // untuk menaruh "/campgrounds di dpn semua routes campgrounds"
-app.use("/campgrounds/:id/comments",commentRoutes);
+app.use("/story/:id/comments",commentRoutes);
 // untuk memberitahu express untuk menggunakan routes
 app.use("/about",aboutUs)
 

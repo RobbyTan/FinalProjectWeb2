@@ -24,7 +24,7 @@ router.post("/register",function(req,res){
 		passport.authenticate("local")(req,res,function(){
 			console.log(req.body.image);
 			req.flash("success","Welcome to No Judgement Zone "+req.body.username +"!")
-			res.redirect("/campgrounds");
+			res.redirect("/story");
 		});
 	});
 })
@@ -33,10 +33,10 @@ router.get("/login",function(req,res){
 	res.render("login");
 })
 router.post("/login",passport.authenticate("local",{
-	successRedirect : "/campgrounds",
+	successRedirect : "/story",
 	failureRedirect : "/login",
 	failureFlash: true,
-	successFlash: 'Welcome to YelpCamp!'
+	successFlash: 'Welcome to No Jugment Zone!'
 }),function(req,res){
 
 })
@@ -44,13 +44,13 @@ router.post("/login",passport.authenticate("local",{
 router.get("/logout",function(req,res){
 	req.logout();
 	req.flash("success","Logged You Out!")
-	res.redirect("/campgrounds")
+	res.redirect("/story")
 });
 router.get("/biodata/:id",function(req,res){
 	User.findById(req.params.id ,function(err,foundBiodata){
 		// tidak bisa pakai === karena satu object satu string
 		if(err){
-			res.redirect("/campgrounds");
+			res.redirect("/story");
 		}else{
 			Campground.find({"author.username": foundBiodata.username}, function(err, foundStory) {
 				console.log(foundStory);
