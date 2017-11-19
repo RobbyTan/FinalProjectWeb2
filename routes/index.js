@@ -14,19 +14,26 @@ router.get("/register",function(req,res){
 	res.render("register");
 })
 router.post("/register",function(req,res){
+	var password=req.body.password;
+	var confirmPassword= req.body.confirmpassword;
 	var newUser = new User({username:req.body.username,image:req.body.image,email:req.body.email,birthday:req.body.birthday,gender:req.body.gender});
-	User.register(newUser,req.body.password,function(err,user){
-		if(err){
-			console.log(err);
-			req.flash("error","Username Already Exist!");
-			return res.redirect("/register");
-		}
-		passport.authenticate("local")(req,res,function(){
-			console.log(req.body.image);
-			req.flash("success","Welcome to No Judgement Zone "+req.body.username +"!")
-			res.redirect("/story");
+	if(password==confirmPassword){
+		User.register(newUser,req.body.password,function(err,user){
+			if(err){
+				console.log(err);
+				req.flash("error","Username Already Exist!");
+				return res.redirect("/register");
+			}
+			passport.authenticate("local")(req,res,function(){
+				console.log(req.body.image);
+				req.flash("success","Welcome to No Judgement Zone "+req.body.username +"!")
+				res.redirect("/story");
+			});
 		});
-	});
+	}else{
+		req.flash("error","Password don't match!")
+		res.redirect("/register")
+	}
 })
 // LOGIN ROUTES
 router.get("/login",function(req,res){

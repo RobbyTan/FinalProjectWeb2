@@ -10,7 +10,8 @@ var campgroundSchema=new mongoose.Schema({
 			ref : "User"
 			// model yang kita connect
 		},
-		username : String
+		username : String,
+		image : String
 	},
 	comments : [
 		{

@@ -1,23 +1,87 @@
 <% include partials/header%>
-<h1>Username :  <%=biodata.username%></h1>
-Phtotos : <br>
-<img src="<%=biodata.image%>"><br>
-Email : <%=biodata.email%><br>
-Birthday : <%=biodata.birthday%><br>
-Gender : <%=biodata.gender%><br>
-<div class="row text-center indexImage" style="display:flex;flex-wrap:wrap">
-        <% story.forEach(function(story){ %>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                <%console.log(story.image)%>
-                   <div class="caption">
-                       <h4><%= story.name %></h4>
-                   </div>
-                   <p>
-                       <a href="/story/<%= story._id %>" class="btn btn-primary">More Info</a>
-                   </p>
+<div class="container">
+  <div class="row">
+    <div class="profile">
+      <div class="image">
+      <img align="left" class="fb-image-lg" src="https://static.pexels.com/photos/257360/pexels-photo-257360.jpeg" alt="Profile Picture"/>
+      </div>  
+        <img align="left" class="fb-image-profile thumbnail" src="<%=biodata.image%>" onerror="this.src='https://myspace.com/common/images/user.png'" >
+      <div class="fb-profile-text">
+        <h1><%=biodata.username%></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- <div class="col-sm-8"> -->
+  <div data-spy="scroll" class="tabbable-panel">
+    <div class="tabbable-line">
+      <ul class="nav nav-tabs ">
+        <li class="active">
+          <a href="#tab_default_1" data-toggle="tab">Story</a>
+        </li>
+        <li>
+          <a href="#tab_default_2" data-toggle="tab">Profile</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab_default_1">
+          <div class="container">
+            <div class="row">
+              <% story.forEach(function(story){ %>
+              <div class="col-sm-8">
+                <div class="panel panel-white post panel-shadow">
+                  <div class="post-heading">
+                    <div class="pull-left image">
+                      <img class="img-circle avatar" src="<%=biodata.image%>" alt="Profile Picture">
+                    </div>
+                    <div class="pull-left meta">
+                      <div class="title h5">
+                        <a href="#"><b><%=biodata.username%></b></a>
+                        made a post.
+                      </div>
+                      <h6 class="text-muted time"><%= moment(story.createdAt).fromNow() %></h6>
+                    </div>
+                  </div> 
+                  <div class="post-description"> 
+                    <%console.log(story.image)%>
+                    <p><%= story.name %></p>
+                  </div>
+                  <div class="stats">
+                    <a href="/story/<%= story._id %>" class="btn btn-default stat-item">
+                    <i class="fa fa-eye icon"></i> Read More !
+                    </a>
+                  </div>
                 </div>
+              </div>
+              <% }); %>
             </div>
-        <% }); %>
-		</div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab_default_2">
+          <p>Profile</p>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+               <label for="email">Email :</label>
+               <p><%=biodata.email%></p>
+             </div>
+             <div class="form-group">
+               <label for="email">Birthday :</label>
+               <p><%=biodata.birthday%></p>
+             </div>
+             <div class="form-group">
+               <label for="email">Gender :<%=biodata.gender%></label>
+               <p><%=biodata.gender%></p>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
 <% include partials/footer%>
+<script src="\stylesheets\js\jquery-3.2.1.min.js"></script>
+<script src="\stylesheets\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>

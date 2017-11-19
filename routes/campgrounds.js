@@ -1,5 +1,6 @@
 var express= require ("express");
 var Campground = require ("../models/campground");
+var User=require("../models/user");
 var router=express.Router();
 // express router
 
@@ -12,7 +13,9 @@ router.get("/",function(req,res){
 	if(err){
 		console.log(err);
 	}else{
-		res.render("campgrounds/index",{campgrounds:allcampgrounds, currentUser : req.user})
+		User.find({},function(err,foundBiodata){
+			res.render("campgrounds/index",{campgrounds:allcampgrounds, currentUser : req.user,biodata:foundBiodata})
+		})
 	}
 })
 	// res.render("campgrounds",{campgrounds:campgrounds})
@@ -24,7 +27,8 @@ router.post("/",isLoggedIn,function(req,res){
 	var description=req.body.description;
 	var author = {
 		id: req.user._id,
-		username : req.user.username
+		username : req.user.username,
+		image : req.user.image
 	}
 	var newCampgrounds={name:name,image:image,description:description,author:author};
 	// simpan ke database

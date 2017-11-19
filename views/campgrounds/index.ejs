@@ -1,27 +1,43 @@
 <% include ../partials/header %>
-
 <div class="container">
-	<header class="jumbotron">
-		<div class="container">
-			<h1>No Judgement Zone</h1>
-			<p>Share With Other. Care to Each Other</p>
-			<a href="/story/new"><button type="button" class="btn btn-success btn-lg">Tell Your Story</button></a>
-		</div>
-	</header>
-	<div class="row text-center indexImage" style="display:flex;flex-wrap:wrap">
-        <% campgrounds.forEach(function(campground){ %>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                <%console.log(campground.image)%>
-                   <div class="caption">
-                       <h4><%= campground.name %></h4>
-                   </div>
-                   <p>
-                       <a href="/story/<%= campground._id %>" class="btn btn-primary">More Info</a>
-                   </p>
-                </div>
+  <header class="jumbotron">
+    <div class="container">
+      <h1>No Judgement Zone</h1>
+      <p>Share With Other. Care to Each Other</p>
+      <a href="/story/new"><button type="button" class="btn btn-success btn-lg">Tell Your Story</button></a>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row">
+      <%var image = ""%>
+      <% campgrounds.reverse().forEach(function(campground){ %>
+      <div class="col-sm-8">
+        <div class="panel panel-white post panel-shadow">
+          <div class="post-heading">
+            <div class="pull-left image">
+              <img class="img-circle avatar" src="<%=campground.author.image%>" onerror="this.src='https://myspace.com/common/images/user.png'" >
             </div>
-        <% }); %>
-		</div>
-	</div>
+            <div class="pull-left meta">
+              <div class="title h5">
+                <a href="/biodata/<%=campground.author.id%>"><b><%=campground.author.username%></b></a>
+                made a post.
+              </div>
+              <h6 class="text-muted time"><%= moment(campground.createdAt).fromNow() %></h6>
+            </div>
+          </div> 
+          <div class="post-description"> 
+            <%console.log(campground.image)%>
+            <p><%= campground.name %></p>
+          </div>
+          <div class="stats">
+            <a href="/story/<%= campground._id %>" class="btn btn-default stat-item">
+            <i class="fa fa-eye icon"></i> Read More !
+            </a>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+</div>
 <% include ../partials/footer %>
