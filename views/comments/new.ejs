@@ -6,7 +6,7 @@
 		<div style="width:30%; margin:25px auto">
 			<form action="/story/<%= campgrounds._id%>/comments" method="post">
 				<div class="form-group">
-					<input type="text" placeholder="text" name="comment[text]" class="form-control">
+					<input type="text" placeholder="text" name="comment[text]" class="form-control" required>
 				</div>
 					<button class="btn btn-success btn-lg btn-block">Submit</button>
 			</form>
