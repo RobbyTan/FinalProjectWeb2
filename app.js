@@ -10,12 +10,14 @@ flash				  = require("connect-flash"),
 mongoose   			  = require('mongoose');
 mongoose.Promise = global.Promise; 
 mongoose.connect('mongodb://localhost/final_project',{useMongoClient: true});
+require('dotenv').config();
 
 // REQUIRE ROUTES
 var campgroundRoutes=require("./routes/campgrounds"),
 	commentRoutes=require("./routes/comments"),
 	aboutUs=require("./routes/about"),
 	indexRoutes=require("./routes/index");
+	helpRoutes=require("./routes/help");
 
 var Campground = require ("./models/campground");
 var Comment = require ("./models/comment");
@@ -56,6 +58,7 @@ app.use("/story",campgroundRoutes);
 app.use("/story/:id/comments",commentRoutes);
 // untuk memberitahu express untuk menggunakan routes
 app.use("/about",aboutUs)
+app.use("/help",helpRoutes)
 
 app.listen(3000,function(){
 	console.log("Server has started")
