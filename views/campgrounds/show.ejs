@@ -24,13 +24,11 @@
 								</a>
 								<ul class="dropdown-menu list-inline list-unstyled">
 									<li>
-										<form class="edit-form">
-											<a href="/story/<%=campground._id%>/edit">
+										<a href="/story/<%=campground._id%>/edit">
 												<button class="btn btn-sm btn-warning">
 													<span><i class="glyphicon glyphicon-edit"></i></span> Edit
 												</button>
-											</a>
-										</form>
+										</a>	
 									</li>
 									<li>
 										<form class="delete-form" action="/story/<%=campground._id%>?_method=DELETE" method="POST">
