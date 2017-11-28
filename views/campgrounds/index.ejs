@@ -1,6 +1,12 @@
 <% include ../partials/header %>
 <div class="container">
   <header class="jumbotron">
+<form class="form-inline pull-right" action="/story/search" method="GET">
+  <div class="form-group">
+    <input type="text" class="form-control" name="search" placeholder="Search">
+  </div>
+  <button type="submit" class="btn btn-default" value="search">Search</button>
+</form>
     <div class="container">
       <h1>No Judgement Zone</h1>
       <p>Share with Others. Care for Each Other</p>

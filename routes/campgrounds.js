@@ -20,6 +20,21 @@ router.get("/",function(req,res){
 })
 	// res.render("campgrounds",{campgrounds:campgrounds})
 })
+router.get("/search",function(req,res){
+	var search=req.body.search;
+	 if (req.query.search) {
+       const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+       Campground.find({ "name": regex }, function(err, foundCampgrounds) {
+           if(err) {
+               console.log(err);
+           } else {
+              res.render("campgrounds/index",{campgrounds:foundCampgrounds, currentUser:req.user});
+           }
+       }); 
+    }else{
+    	res.redirect("/story")
+    }
+})
 // CREATE
 router.post("/",isLoggedIn,function(req,res){
 	var name=req.body.name;
@@ -122,6 +137,9 @@ function checkOwnership(req,res,next){
 		}else{
 			res.redirect("/login");
 		}
-	}
+}
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 	module.exports= router;
