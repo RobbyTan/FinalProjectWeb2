@@ -1,58 +1,107 @@
 <% include ../partials/header%>
-<div class="container">
-	<div class="row">
-		<div class="col-md-3">
-			<p class="lead">No Judgement Zone</p>
-			<div class="list-group">
-				<li class="list-group-item active">Story</li>
-				<h3>Total Comments : <%=commentCount%> </h3>
+<div class="container ctnshow">
+	<div class="container">
+		<div class="row">
+			<div class="well">
+				<div class="media">
+					<a class="pull-left" href="#">
+						<img class="media-object" src="<%=campground.author.image%>" onerror="this.src='https://myspace.com/common/images/user.png'" style="width:40px; height: 40px;">
+					</a>
+					<div class="media-body">
+						<h4 class="media-heading"><%= campground.name%></h4>
+						<p class="text-right">By <%= campground.author.username %></p>
+						<p><%=campground.description%></p>
+						<ul class="list-inline list-unstyled" style="position: absolute;">
+							<li><span><i class="glyphicon glyphicon-calendar"></i> <%= moment(campground.createdAt).fromNow() %> </span></li>
+							<li>|</li>
+							<span><i class="glyphicon glyphicon-comment"></i> <%=commentCount%> comments</span>
+							<%if(currentUser){%>
+							<% if(campground.author.id.equals(currentUser._id) || currentUser._id.equals("59febe24cbb24828842a9780")){%>
+							<li>|</li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<span><i class="glyphicon glyphicon-option-vertical" aria-hidden="true"></i></span>
+								</a>
+								<ul class="dropdown-menu list-inline list-unstyled">
+									<li>
+										<form class="edit-form">
+											<a href="/story/<%=campground._id%>/edit">
+												<button class="btn btn-sm btn-warning">
+													<span><i class="glyphicon glyphicon-edit"></i></span> Edit
+												</button>
+											</a>
+										</form>
+									</li>
+									<li>
+										<form class="delete-form" action="/story/<%=campground._id%>?_method=DELETE" method="POST">
+											<button class="btn btn-sm btn-danger">
+												<span><i class="glyphicon glyphicon-remove"></i></span> Delete
+											</button>
+										</form>	
+									</li>
+								</ul>
+							</li>
+							<% } %>
+							<% } %>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="col-md-9">
-			<div class="thumbnail">
-				<div class="caption-full">
-					<h4><a><%= campground.name%></a></h4>
-					<p><%=campground.description%></p>
-					<p>
-						<em>Submitted by: <a href="/biodata/<%=campground.author.id%>"><%= campground.author.username %></a>, <%= moment(campground.createdAt).fromNow() %></em>
-					</p>
-					<%if(currentUser){%>
-						<% if(campground.author.id.equals(currentUser._id) || currentUser._id.equals("59febe24cbb24828842a9780")){%>
-							<a class="btn btn-warning" href="/story/<%=campground._id%>/edit">Edit</a>
-							<form class="delete-form" action="/story/<%=campground._id%>?_method=DELETE" method="POST">
-							<button class="btn btn-danger" >Delete</button>
-						</form>
-						<% } %>
-					<% } %>
-				</div>
-			</div>
-			<div class="well">
-				<div class="text-right">
-					<a class="btn btn-default" href="/story/<%=campground._id%>/comments/new">Add a new comment</a>
-				</div>
-				<hr>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9">
+				<div class="well">
+					<div class="text-right">
+						<a class="btn btn-default" href="/story/<%=campground._id%>/comments/new">Add a new comment</a>
+					</div>
 					<%campground.comments.forEach(function(comment){ %>
-					<div class="row">
-						<div class="col-md-12">
-							<strong><a href="/biodata/<%=comment.author.id%>"><%=comment.author.username%></a></strong>
-							<span class="pull-right"><%= moment(comment.createdAt).fromNow() %></span>
+					<div class="comments-list">
+						<div class="media">
+							<p>
+								<%if(currentUser){%>
+								<% if(campground.author.id.equals(currentUser._id) || currentUser._id.equals("59febe24cbb24828842a9780")){%>
+								<ul class="dropdown pull-right">
+									<small><%= moment(comment.createdAt).fromNow() %></small> | 
+									<a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<span><i class="glyphicon glyphicon-option-vertical" aria-hidden="true"></i></span>
+									</a>
+									<ul class="dropdown-menu list-inline list-unstyled">
+										<li>
+											<form class="edit-form">
+												<a href="/story/<%=campground._id%>/comments/<%=comment._id%>/edit" class="btn btn-sm btn-warning">
+													<span><i class="glyphicon glyphicon-edit"></i></span> Edit
+												</a>
+											</form>
+										</li>
+										<li>
+											<form class="delete-form" action="/story/<%=campground._id%>/comments/<%=comment._id%>
+												?_method=DELETE" method="POST">
+												<button class="btn btn-sm btn-danger">
+													<span><i class="glyphicon glyphicon-remove"></i></span> Delete
+												</button>
+											</form>	
+										</li>
+									</ul>
+								</ul> 
+								<% } %>
+								<% } %>
+							</p>
+							<a class="media-left" href="#">
+								<img src="<%=comment.author.image%>" onerror="this.src='https://myspace.com/common/images/user.png'" style="width:40px; height: 40px;" alt="Profile Picture">
+								<!-- <img src="http://lorempixel.com/40/40/people/1/"> -->
+							</a>
+							<div class="media-body">
+								<a href="/biodata/<%=comment.author.id%>"><h4 class="media-heading user_name"><%=comment.author.username%></h4></a>
+								<p><%=comment.text%></p>
+							</div>
 						</div>
 					</div>
-					<p><%=comment.text%></p>
-					<%if(currentUser){%>
-					<% if(comment.author.id.equals(currentUser._id) || currentUser._id.equals("59febe24cbb24828842a9780")){%>
-					<a class="btn btn-warning" href="/story/<%=campground._id%>/comments/<%=comment._id%>/edit">Edit</a>
-						<form class="delete-form" action="/story/<%=campground._id%>/comments/<%=comment._id%>
-						?_method=DELETE" method="POST">
-						<button class="btn btn-danger" >Delete</button>
-					</form>
-					<%}%>
-					<%}%>
 					<% }) %>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-
 <% include ../partials/footer%>

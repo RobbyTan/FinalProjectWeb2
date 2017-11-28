@@ -3,41 +3,44 @@
   <header class="jumbotron">
     <div class="container">
       <h1>No Judgement Zone</h1>
-      <p>Share With Other. Care to Each Other</p>
+      <p>Share with Others. Care for Each Other</p>
       <a href="/story/new"><button type="button" class="btn btn-success btn-lg">Tell Your Story</button></a>
     </div>
   </header>
-  <div class="container">
-    <div class="row">
-      <%var image = ""%>
-      <% campgrounds.reverse().forEach(function(campground){ %>
-      <div class="col-sm-8">
-        <div class="panel panel-white post panel-shadow">
-          <div class="post-heading">
-            <div class="pull-left image">
-              <img class="img-circle avatar" src="<%=campground.author.image%>" onerror="this.src='https://myspace.com/common/images/user.png'">
-            </div>
-            <div class="pull-left meta">
-              <div class="title h5">
-                <a href="/biodata/<%=campground.author.id%>"><b><%=campground.author.username%></b></a>
-                made a post.
-              </div>
-              <h6 class="text-muted time"><%= moment(campground.createdAt).fromNow() %></h6>
-            </div>
-          </div> 
-          <div class="post-description"> 
-            <%console.log(campground.image)%>
-            <p><%= campground.name %></p>
+</div>
+<div class="container">
+  <div class="row">
+    <!-- <div class="col-sm-2"></div> -->
+    <%var image = ""%>
+    <% campgrounds.reverse().forEach(function(campground){ %>
+    <!-- <div class="col-sm-2"></div> -->
+    <div class="col-sm-8">
+      <div class="panel panel-white post panel-shadow">
+        <div class="post-heading">
+          <div class="pull-left image">
+            <img class="img-circle avatar" src="<%=campground.author.image%>" onerror="this.src='https://myspace.com/common/images/user.png'" alt="Profile Picture">
           </div>
-          <div class="stats">
-            <a href="/story/<%= campground._id %>" class="btn btn-default stat-item">
+          <div class="pull-left meta">
+            <div class="title h5">
+              <a href="/biodata/<%=campground.author.id%>"><b><%=campground.author.username%></b></a>
+              made a post.
+            </div>
+            <h6 class="text-muted time"><%= moment(campground.createdAt).fromNow() %></h6>
+          </div>
+        </div> 
+        <div class="post-description"> 
+          <%console.log(campground.image)%>
+          <p><%= campground.name %></p>
+        </div>
+        <div class="stats">
+          <a href="/story/<%= campground._id %>" class="btn btn-default stat-item">
             <i class="fa fa-eye icon"></i> Read More !
-            </a>
-          </div>
+          </a>
         </div>
       </div>
-      <% }); %>
     </div>
+    <!-- <div class="col-sm-2"></div> -->
+    <% }); %>
   </div>
 </div>
 <% include ../partials/footer %>

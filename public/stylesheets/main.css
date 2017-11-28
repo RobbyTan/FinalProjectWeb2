@@ -5,12 +5,10 @@
 		background-color: #5b6d83;
 		margin: 0px;
 		width: 100%;
-		min-height: 100px;
+		min-height: 50px; /*100px*/
 	}
 
 	.navbar-collapse {
-		/*border-top: 1px solid transparent;*/
-		/*box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);*/
 		margin : 30 !important;
 	}
 
@@ -21,7 +19,7 @@
 	}
 
 	ul.nav.navbar-nav{
-		padding-top: 40px;
+		padding-top: 10px;
 	}
 
 	.navbar-default .navbar-nav > li > a{
@@ -32,8 +30,8 @@
 	}
 
 	a.navbar-brand{
-		margin: auto 0px;
-		padding: 0px 0px 0px 20px;
+		margin: 0px;
+		padding: 0px 0px 0px 15px;
 	}
 
 	.navbar-default .navbar-nav > li > a:hover{
@@ -45,7 +43,6 @@
 		display: block;
 		background-color: #5b6d83;
 		padding: 0.5em;
-		/*border-bottom: thin groove silver;*/
 	}
 
 	#custom-bootstrap-menu.navbar-default .navbar-nav>li>a:hover,
@@ -62,15 +59,6 @@
 
 	div.container{
 		width: 100%;
-	}
-
-	/* Number text (1/3 etc) */
-	.numbertext {
-		color: #f2f2f2;
-		font-size: 12px;
-		padding: 8px 12px;
-		position: absolute;
-		top: 0;
 	}
 
 	.btn_landing{
@@ -102,10 +90,9 @@
 	}
 
 	/*footer*/
-
 	#myFooter{
 		width: 100%;
-		height: 140px;
+		height: 100px; /*140*/
 		background-color: #5b6d83;
 		color:white;
 	}
@@ -216,30 +203,27 @@
 	}
 
 	/*landing.ejs*/
+	div.sb1{
+		padding: 40px;
+		border-bottom: 1px groove silver;
+	}
+
 	div.ctnhdr-1{
-		background-color: #ffffff;
-		border-bottom: thin groove silver;
-		padding-top: 2em;
-		padding-bottom: 2em;
-		padding-left: 20px;
-		padding-right: 20px;
-		/*groove*/
-		/*inset*/
+		padding: 40px;
+	}
+
+	div.sb2{
+		padding: 40px;
 	}
 
 	div.ctnhdr-2{
-		background-color: #f2f2f2;
-		border-bottom: thin groove silver;
-		padding-top: 2em;
-		padding-bottom: 2em;
-		padding-left: 30px;
-		padding-right: 30px;
+		padding-right: 0px;
+		border-bottom: 1px groove silver;
 	}
 
 	/*login.ejs & register.ejs*/
 	.container-login-register{
-		height: 1500px;
-		background-color: #20272E;
+		height: 1000px;
 	}
 
 	.main{
@@ -247,7 +231,7 @@
 		background-repeat: no-repeat;
 		background-color: #d3d3d3;
 		font-family: 'Oxygen', sans-serif;
-		margin-top: 70px;
+		/*margin-top: 70px;*/
 	}
 
 	h1.title { 
@@ -290,9 +274,10 @@
 
 	.main-center{
 		margin-top: 30px;
-		margin: auto;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 30px;
 		max-width: 500px;
-		padding: 40px 140px 40px 140px;
 	}
 
 	.login-button{
@@ -302,6 +287,8 @@
 	.login-register{
 		font-size: 11px;
 		text-align: center;
+		padding-bottom: 10px;
+		color: white;
 	}
 
 	/*biodata.ejs*/
@@ -672,6 +659,15 @@
 	}
 	.status-upload form button > i {
 		margin-right: 7px;
+	}
+
+	/* show.ejs */
+	.ctnshow{
+		height: 100%;
+	}
+	.comments-list .media{
+		border-bottom: 1px dotted #ccc;
+		padding-bottom: 35px;
 	}
 
 	/**/

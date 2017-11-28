@@ -31,6 +31,7 @@ router.post("/",isLoggedIn,function(req,res){
 				}else{
 					comment.author.id=req.user._id;
 					comment.author.username=req.user.username;
+					comment.author.image=req.user.image;
 					comment.save();
 					campground.comments.push(comment);
 					campground.save();

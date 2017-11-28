@@ -1,93 +1,83 @@
 <% include partials/header%>
-<div class="container container-login-register">
-<div class="main main-login main-center">
-  <form class="form-horizontal" method="post" action="/register" enctype="multipart/form-data">
-<div class="panel-heading">
-   <div class="panel-title text-center">
-    <h1 class="title">Sign Up</h1>
-    <hr/>
-  </div>
-</div>
-    <div class="form-group">
-      <label for="username" class="cols-sm-2 control-label">Username </label>
-      <div class="cols-sm-10">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-          <input type="text" class="form-control" name="username" id="name"  placeholder="Enter your Name" required/>
+<div class="container-login-register">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="main main-login main-center" align="center">
+      <div class="panel-heading">
+        <h1 class="title text-center">Sign Up</h1>
+        <hr/>
+      </div>
+      <form class="form-horizontal" method="post" action="/register" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="username" class="control-label">Username </label>
+          <div class="input-group col-xs-6">
+            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+            <input type="text" class="form-control" name="username" id="name"  placeholder="Enter your Name" required/>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="form-group">
-      <label for="email" class="cols-sm-2 control-label">Your Email </label>
-      <div class="cols-sm-10">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-          <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email" required/>
+        <div class="form-group">
+          <label for="email" class="control-label">Your Email </label>
+          <div class="input-group col-xs-6">
+            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+            <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email" required/>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="form-group">
-      <label for="password" class="cols-sm-2 control-label">Password </label>
-      <div class="cols-sm-10">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-          <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password" required minlength="5" maxlength="10"/>
+        <div class="form-group">
+          <label for="password" class="control-label">Password </label>
+          <div class="input-group col-xs-6">
+            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+            <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password" required/>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="form-group">
-      <label for="password" class="cols-sm-2 control-label">Confirm Password </label>
-      <div class="cols-sm-10">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-          <input type="password" class="form-control" name="confirmpassword" id="password"  placeholder="Enter your Confirm Password" required minlength="5" maxlength="10"/>
+        <div class="form-group">
+          <label for="password" class="control-label">Confirm Password </label>
+          <div class="input-group col-xs-6">
+            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+            <input type="password" class="form-control" name="confirmpassword" id="password"  placeholder="Enter your Confirm Password" required/>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="form-group">
-      <label for="password" class="cols-sm-2 control-label">Birthday </label>
-      <div class="cols-sm-10">
-        <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-calendar fa-lg" aria-hidden="true"></i></span>
-          <input type="date" class="form-control" name="birthday" id="birthday" required/>
+        <div class="form-group">
+          <label for="password" class="control-label">Birthday </label>
+          <div class="input-group col-xs-6">
+            <span class="input-group-addon"><i class="fa fa-calendar fa-lg" aria-hidden="true"></i></span>
+            <input type="date" class="form-control" name="birthday" id="birthday" required/>
+          </div>
         </div>
-      </div>
-    </div>
 
-   <div class="form-group">
-    <label class="cols-sm-2 control-label" for="gender">Gender</label>
-    <div class="cols-sm-10 controls">
-      <div class="input-group control-label">
-        <input name="gender" id="gender-0" value="male" checked="checked" type="radio">
-        Male
-        <input name="gender" id="gender-1" value="female" type="radio">
-        Female
-      </div>
+        <div class="form-group">
+          <label class="control-label" for="gender">Gender</label>
+          <div class="input-group control-label">
+            <input name="gender" id="gender-0" value="male" checked="checked" type="radio">
+            Male
+            <input name="gender" id="gender-1" value="female" type="radio">
+            Female
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirm" class="control-label">Image</label>
+          <div class="input-group col-xs-6">
+            <span class="input-group-addon"><i class="fa fa-picture-o fa-lg" aria-hidden="true"></i></span>
+            <!-- <label class="btn-bs-file btn btn-xs btn-primary"> -->
+              <!-- Browse -->
+              <input type="file" class="form-control" id="image" name="image" accept="image/*" required/>
+            <!-- </label> -->
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-lg login-button">Register</button>
+        </div>
+        <div class="login-register">
+          <a href="/login">Login</a>
+        </div>
+      </form>
     </div>
   </div>
-
-  <div class="form-group">
-    <label for="confirm" class="cols-sm-2 control-label">Image </label>
-    <div class="cols-sm-10">
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-picture-o fa-lg" aria-hidden="true"></i></span>
-        <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group ">
-    <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
-  </div>
-  <div class="login-register">
-    <a href="/login">Login</a>
-  </div>
-</form>
-</div>
 </div>
 
 <% include partials/footer%>

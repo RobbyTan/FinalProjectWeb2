@@ -25,19 +25,20 @@
 					<span class="icon-bar"></span>
 				</button>
 				<!-- <a class="navbar-brand" href="/">No Judgement Zone</a> -->
-				<a class="navbar-brand" href="/"><img src="/NJZ/No-Judgement-Zone-Logo_P10.png" width="197" height="99" alt="No Judgement Zone"></a>
+				<a class="navbar-brand" href="/"><img src="/images/Logo.png" width="110" height="60" alt="No Judgement Zone"></a>
+				<!-- <a class="navbar-brand" href="/"><img src="/NJZ/Logo.png" width="197" height="99" alt="No Judgement Zone"></a> -->
 			</div>
 			<div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
 				<ul id="nav" class="nav navbar-nav navbar-right">
 					<%if(!currentUser){ %>
 					<li><a href="/login">Login</a></li>
 					<li><a href="/register">Sign Up</a></li>
-					<li><a href="/#aboutus">About Us</a></li>
+					<li><a href="/aboutus">About Us</a></li>
 					<li><a href="/help">Help</a></li>
 					<% }else{ %>
 					<li><a href="#">SignIn as <%=currentUser.username%></a></li>
 					<li><a href="/logout">Log Out</a></li>
-					<li><a href="/#aboutus">About Us</a></li>
+					<li><a href="/aboutus">About Us</a></li>
 					<li><a href="/help">Help</a></li>
 					<% } %>
 				</ul>
