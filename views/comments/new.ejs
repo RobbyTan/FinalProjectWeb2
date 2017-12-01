@@ -1,8 +1,10 @@
 <% include ../partials/header%>
 <div class="container newpost">
 	<div class="row">
-		<h1>Add New comment to <%= campgrounds.name%></h1>
-		<div class="col-md-6">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<h1>Add New comment to <%= campgrounds.name%></h1>
+
 			<div class="widget-area no-padding blank">
 				<div class="status-upload">
 					<form action="/story/<%= campgrounds._id%>/comments" method="post">
@@ -15,6 +17,7 @@
 				</div><!-- Status Upload  -->
 			</div><!-- Widget Area -->
 		</div>
+		<div class="col-md-2"></div>
 	</div>
 </div>
 <% include ../partials/footer%>

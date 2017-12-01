@@ -75,6 +75,17 @@
                <label for="email">Gender :</label>
                <p><%=biodata.gender%></p>
              </div>
+             <%if(currentUser){%>
+             <% if(biodata._id.equals(currentUser._id) || currentUser._id.equals("5a1f84e154087d0284656084")){%>
+             <div class="form-group">
+                    <form class="delete-form" action="/biodata/<%=biodata._id%>/<%=biodata.username%>?_method=DELETE" method="POST">
+                      <button class="btn btn-sm btn-danger">
+                        <span><i class="glyphicon glyphicon-remove"></i></span> Delete
+                      </button>
+                    </form> 
+             </div>
+             <%}%>
+             <%}%>
            </div>
          </div>
        </div>
@@ -83,5 +94,3 @@
  </div>
 </div>
 <% include partials/footer%>
-<script src="\stylesheets\js\jquery-3.2.1.min.js"></script>
-<script src="\stylesheets\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>

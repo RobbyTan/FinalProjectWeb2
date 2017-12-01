@@ -2,6 +2,7 @@ var express= require ("express");
 var passport=require("passport");
 var User=require("../models/user");
 var Campground = require ("../models/campground");
+var Comment = require ("../models/comment");
 const { cloudinary, upload } = require('../middleware/cloudinary');
 var async = require("async");
 var nodemailer = require("nodemailer");
@@ -65,7 +66,7 @@ router.get("/forgot",function(req,res){
 	res.render("forgot");
 })
 router.post('/forgot', function(req, res, next) {
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
   async.waterfall([
     function(done) {
       crypto.randomBytes(20, function(err, buf) {
@@ -101,9 +102,9 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
         from: 'help.sonder@gmail.com',
         subject: 'Node.js Password Reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
-          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+        'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+        'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+        'If you did not request this, please ignore this email and your password will remain unchanged.\n'
       };
       smtpTransport.sendMail(mailOptions, function(err) {
         console.log('mail sent');
@@ -111,10 +112,10 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
         done(err, 'done');
       });
     }
-  ], function(err) {
-    if (err) return next(err);
-    res.redirect('/forgot');
-  });
+    ], function(err) {
+      if (err) return next(err);
+      res.redirect('/forgot');
+    });
 });
 
 router.get('/reset/:token', function(req, res) {
@@ -147,8 +148,8 @@ router.post('/reset/:token', function(req, res) {
             });
           })
         } else {
-            req.flash("error", "Passwords do not match.");
-            return res.redirect('back');
+          req.flash("error", "Passwords do not match.");
+          return res.redirect('back');
         }
       });
     },
@@ -165,16 +166,16 @@ router.post('/reset/:token', function(req, res) {
         from: 'help.sonder@gmail.com',
         subject: 'Your password has been changed',
         text: 'Hello,\n\n' +
-          'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+        'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
       };
       smtpTransport.sendMail(mailOptions, function(err) {
         req.flash('success', 'Success! Your password has been changed.');
         done(err);
       });
     }
-  ], function(err) {
-    res.redirect('/story');
-  });
+    ], function(err) {
+      res.redirect('/story');
+    });
 });
 // BIODATA ROUTES
 router.get("/biodata/:id",function(req,res){
@@ -185,12 +186,39 @@ router.get("/biodata/:id",function(req,res){
 		}else{
 			Campground.find({"author.username": foundBiodata.username}, function(err, foundStory) {
 				console.log(foundStory);
-				res.render("biodata",{biodata:foundBiodata,story:foundStory});
+				res.render("biodata",{biodata:foundBiodata,story:foundStory,currentUser:req.user});
 			});
 		}
 	})
-
 })
+router.delete("/biodata/:id/:name",function(req,res){
+  if(req.user){
+    if(req.user._id.equals(req.params.id) || req.user._id.equals("5a1f84e154087d0284656084")){
+      Campground.remove({"author.username": req.params.name}, function(err) {
+        if(err){
+          res.redirect("/story");
+        }
+      });
+      Comment.remove({"author.username": req.params.name}, function(err) {
+        if(err){
+          res.redirect("/story");
+        }
+      });
+      User.findByIdAndRemove(req.params.id,function(err){
+        if(err){
+          console.log(err);
+          res.redirect("/story");
+        }else{
+          req.flash("success","Delete Successfull!");
+          res.redirect("/story");
+        }
+      })
+    }
+  }else{
+    res.redirect("back")
+  }
+
+});
 // middleware
 function isLoggedIn(req,res,next){
 	if(req.isAuthenticated()){

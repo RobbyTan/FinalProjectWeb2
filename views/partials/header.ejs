@@ -16,19 +16,17 @@
 	<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<nav id="custom-bootstrap-menu" class="navbar navbar-default sticky">
+	<nav class="navbar navbar-default navbar-expand-lg sticky">
 		<div class="container-fluid">
-			<div class="navbar-header">
+			<div class="navbar-header nhdr1">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<!-- <a class="navbar-brand" href="/">No Judgement Zone</a> -->
 				<a class="navbar-brand" href="/"><img src="/images/Logo.png" width="110" height="60" alt="No Judgement Zone"></a>
-				<!-- <a class="navbar-brand" href="/"><img src="/NJZ/Logo.png" width="197" height="99" alt="No Judgement Zone"></a> -->
 			</div>
-			<div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+			<div class="navbar-collapse collapse" id="navbarSupportedContent">
 				<ul id="nav" class="nav navbar-nav navbar-right">
 					<%if(!currentUser){ %>
 					<li><a href="/login">Login</a></li>
@@ -36,19 +34,28 @@
 					<li><a href="/about">About Us</a></li>
 					<li><a href="/help">Help</a></li>
 					<% }else{ %>
-					<li><a href="/biodata/<%=currentUser._id%>">SignIn as <%=currentUser.username%></a></li>
-					<li><a href="/logout">Log Out</a></li>
-					<li><a href="/aboutus">About Us</a></li>
+					<li><a href="/about">About Us</a></li>
 					<li><a href="/help">Help</a></li>
+					<li class="dropdown list-inline">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Hi , <%=currentUser.username%>
+							<img class="img-circle" src="<%=currentUser.image%>" onerror="this.src='https://myspace.com/common/images/user.png'" style="width:25px; height: 25px;">
+							<span><i class="caret" aria-hidden="true"></i></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li class="dm1"><a href="/biodata/<%=currentUser._id%>">Profile</a></li>
+							<li class="dm1"><a href="/logout">Log Out</a></li>	
+						</ul>
+					</li>
 					<% } %>
 				</ul>
 			</div>
-		</nav>
-		<div class="container">
-			<%if(error && error.length>0){%>
-			<div class="alert alert-danger" role="alert"><%=error%></div>
-			<%}%>
-			<%if(success && success.length>0){%>
-			<div class="alert alert-success" role="alert"><%=success%></div>
-			<%}%>
 		</div>
+	</nav>
+	<div class="container">
+		<%if(error && error.length>0){%>
+		<div class="alert alert-danger" role="alert"><%=error%></div>
+		<%}%>
+		<%if(success && success.length>0){%>
+		<div class="alert alert-success" role="alert"><%=success%></div>
+		<%}%>
+	</div>
