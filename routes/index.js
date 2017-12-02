@@ -94,7 +94,7 @@ router.post('/forgot', function(req, res, next) {
         service: 'Gmail', 
         auth: {
           user: 'help.sonder@gmail.com',
-          pass: 'S0nd3rH3lp'
+          pass: process.env.GMAILPW
         }
       });
       var mailOptions = {
@@ -158,7 +158,7 @@ router.post('/reset/:token', function(req, res) {
         service: 'Gmail', 
         auth: {
           user: 'help.sonder@gmail.com',
-          pass: 'S0nd3rH3lp'
+          pass: process.env.GMAILPW
         }
       });
       var mailOptions = {
