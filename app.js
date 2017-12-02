@@ -62,7 +62,7 @@ app.use("/story/:id/comments",commentRoutes);
 app.use("/about",aboutUs)
 app.use("/help",helpRoutes)
 
-app.listen(3000,function(){
+app.listen(process.env.PORT || 3000,function(){
 	console.log("Server has started")
 })
 // restful routes terdiri dari 4 yaitu : index (display all),new (form untuk buat baru),create(POST),show(get new dogs)
