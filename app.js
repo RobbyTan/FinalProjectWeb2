@@ -10,8 +10,7 @@ flash				  = require("connect-flash"),
 mongoose   			  = require('mongoose');
 mongoose.Promise = global.Promise; 
 // mongoose.connect('mongodb://localhost/final_project',{useMongoClient: true});
-// var url ="mongodb://sonder:sonder@ds119436.mlab.com:19436/final_project"
-var url = process.env.DATABASEURL
+var url ="mongodb://sonder:sonder@ds119436.mlab.com:19436/final_project"
 mongoose.connect(url,{useMongoClient: true});
 
 // REQUIRE ROUTES
