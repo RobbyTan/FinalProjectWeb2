@@ -91,7 +91,7 @@ function checkOwnership(req,res,next){
 					res.redirect("back");
 				}else{
 				// is the user own the campgrounds?
-				if(foundComment.author.id.equals(req.user._id) || req.user._id.equals("5a1f84e154087d0284656084")){
+				if(foundComment.author.id.equals(req.user._id) || req.user._id.equals("5a23729c8a83510014e945da")){
 					// tidak bisa pakai === karena satu object satu string
 					next();
 				}else{

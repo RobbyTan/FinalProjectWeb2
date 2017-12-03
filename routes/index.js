@@ -193,7 +193,7 @@ router.get("/biodata/:id",function(req,res){
 })
 router.delete("/biodata/:id/:name",function(req,res){
   if(req.user){
-    if(req.user._id.equals(req.params.id) || req.user._id.equals("5a1f84e154087d0284656084")){
+    if(req.user._id.equals(req.params.id) || req.user._id.equals("5a23729c8a83510014e945da")){
       Campground.remove({"author.username": req.params.name}, function(err) {
         if(err){
           res.redirect("/story");

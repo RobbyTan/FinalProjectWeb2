@@ -16,7 +16,7 @@
 							<li>|</li>
 							<span><i class="glyphicon glyphicon-comment"></i> <%=commentCount%> comments</span>
 							<%if(currentUser){%>
-							<% if(campground.author.id.equals(currentUser._id) || currentUser._id.equals("5a1f84e154087d0284656084")){%>
+							<% if(campground.author.id.equals(currentUser._id) || currentUser._id.equals("5a23729c8a83510014e945da")){%>
 							<li>|</li>
 							<li class="dropdown">
 								<a class="dropdown-toggle sh1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,7 +60,7 @@
 						<div class="media">
 							<p>
 								<%if(currentUser){%>
-								<% if(campground.author.id.equals(currentUser._id) || currentUser._id.equals("5a1f84e154087d0284656084")){%>
+								<% if(campground.author.id.equals(currentUser._id) || currentUser._id.equals("5a23729c8a83510014e945da")){%>
 								<ul class="dropdown pull-right">
 									<small><%= moment(comment.createdAt).fromNow() %></small> | 
 									<a class="dropdown-toggle sh1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
