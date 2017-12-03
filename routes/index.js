@@ -20,6 +20,7 @@ router.get("/register",function(req,res){
 router.post("/register", upload.single('image'),function(req,res){
 	var password=req.body.password;
 	var confirmPassword= req.body.confirmpassword;
+  if(req.file){
 	cloudinary.uploader.upload(req.file.path,function(result){
 		console.log(result.secure_url);
 		var newUser = new User({username:req.body.username,image:result.secure_url,email:req.body.email,birthday:req.body.birthday,gender:req.body.gender});
@@ -41,7 +42,26 @@ router.post("/register", upload.single('image'),function(req,res){
 			res.redirect("/register")
 		}
 	});
-
+}else{
+    var newUser = new User({username:req.body.username,image:'https://myspace.com/common/images/user.png',email:req.body.email,birthday:req.body.birthday,gender:req.body.gender});
+    if(password==confirmPassword){
+      User.register(newUser,req.body.password,function(err,user){
+        if(err){
+          console.log(err);
+          req.flash("error","Username Already Exist!");
+          return res.redirect("/register");
+        }
+        passport.authenticate("local")(req,res,function(){
+          console.log(req.body.image);
+          req.flash("success","Welcome to Sonder "+req.body.username +"!")
+          res.redirect("/story");
+        });
+      });
+    }else{
+      req.flash("error","Password don't match!")
+      res.redirect("/register")
+    }
+}
 })
 // LOGIN ROUTES
 router.get("/login",function(req,res){
