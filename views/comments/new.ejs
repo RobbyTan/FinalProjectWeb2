@@ -3,18 +3,15 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
-			<h1>Add New comment to <%= campgrounds.name%></h1>
-
+			<h1 class="h1newcmt">Add Comments</h1>
 			<div class="widget-area no-padding blank">
-				<div class="status-upload">
 					<form action="/story/<%= campgrounds._id%>/comments" method="post">
 						<div class="form-group">
-							<input type="text" placeholder="Text" name="comment[text]" class="form-control status-upload" required>
+							<textarea type="text" placeholder="Text" name="comment[text]" class="form-control" required></textarea>
 						</div>
-						<button type="submit" class="btn btn-success green"><i class="glyphicon glyphicon-comment"></i>Comment</button>
+						<button type="submit" class="btn btn-success green"><i class="glyphicon glyphicon-comment"></i> Comment</button>
 					</form>
 					<a href="/story">Go Back</a>
-				</div><!-- Status Upload  -->
 			</div><!-- Widget Area -->
 		</div>
 		<div class="col-md-2"></div>

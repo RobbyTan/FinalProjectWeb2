@@ -13,7 +13,7 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container ctrbdt">
   <!-- <div class="col-sm-8"> -->
   <div data-spy="scroll" class="tabbable-panel">
     <div class="tabbable-line">
@@ -24,12 +24,19 @@
         <li>
           <a href="#tab_default_2" data-toggle="tab">Profile</a>
         </li>
+        <%if(currentUser){%>
+        <% if(biodata._id.equals(currentUser._id) || currentUser._id.equals("5a1f84e154087d0284656084")){%>
+        <li>
+          <a href="#tab_default_3" data-toggle="tab">Settings</a>
+        </li>
+        <%}%>
+        <%}%>
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="tab_default_1">
           <div class="container">
             <div class="row">
-              <% story.forEach(function(story){ %>
+              <% story.reverse().forEach(function(story){ %>
               <div class="col-sm-8">
                 <div class="panel panel-white post panel-shadow">
                   <div class="post-heading">
@@ -41,7 +48,7 @@
                         <a href="#"><b><%=biodata.username%></b></a>
                         made a post.
                       </div>
-                      <h6 class="text-muted time">1 minute ago</h6>
+                      <h6 class="text-muted time"> <%=moment(story.createdAt).fromNow() %></h6>
                     </div>
                   </div> 
                   <div class="post-description"> 
@@ -50,7 +57,7 @@
                   </div>
                   <div class="stats">
                     <a href="/story/<%= story._id %>" class="btn btn-default stat-item">
-                    <i class="fa fa-eye icon"></i> Read More !
+                      <i class="fa fa-eye icon"></i> Read More !
                     </a>
                   </div>
                 </div>
@@ -75,22 +82,35 @@
                <label for="email">Gender :</label>
                <p><%=biodata.gender%></p>
              </div>
-             <%if(currentUser){%>
-             <% if(biodata._id.equals(currentUser._id) || currentUser._id.equals("5a1f84e154087d0284656084")){%>
-             <div class="form-group">
-                    <form class="delete-form" action="/biodata/<%=biodata._id%>/<%=biodata.username%>?_method=DELETE" method="POST">
-                      <button class="btn btn-sm btn-danger">
-                        <span><i class="glyphicon glyphicon-remove"></i></span> Delete
-                      </button>
-                    </form> 
-             </div>
-             <%}%>
-             <%}%>
            </div>
          </div>
        </div>
-     </div>
-   </div>
- </div>
+       <div class="tab-pane" id="tab_default_3">  
+         <div class="row">
+           <div class="col-sm-2"></div>
+           <div class="col-sm-8">
+             <div class="form-group">
+              <form class="delete-form" action="/biodata/<%=biodata._id%>/<%=biodata.username%>?_method=DELETE" method="POST">
+                <br>
+                <hr class="style1">
+                <br>
+                <p>
+                  If you choose to delete to delete your account, keep in mind that you won't be able to login, share your story or comment on any stories for this website with the same username in the future.
+                  And any of your data will be deleted permanently too.
+                </p>
+                <button class="btn btn-sm btn-danger">
+                  <span><i class="glyphicon glyphicon-remove"></i></span> Delete Account
+                </button>
+                <br>
+                <hr class="style1">
+                <br>
+              </form> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 <% include partials/footer%>
