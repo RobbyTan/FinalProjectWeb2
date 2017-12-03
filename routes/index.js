@@ -2,6 +2,7 @@ var express= require ("express");
 var passport=require("passport");
 var User=require("../models/user");
 var Campground = require ("../models/campground");
+var Comment = require ("../models/comment");
 const { cloudinary, upload } = require('../middleware/cloudinary');
 var async = require("async");
 var nodemailer = require("nodemailer");
@@ -189,8 +190,35 @@ router.get("/biodata/:id",function(req,res){
 			});
 		}
 	})
-
 })
+router.delete("/biodata/:id/:name",function(req,res){
+  if(req.user){
+    if(req.user._id.equals(req.params.id) || req.user._id.equals("5a1f84e154087d0284656084")){
+      Campground.remove({"author.username": req.params.name}, function(err) {
+        if(err){
+          res.redirect("/story");
+        }
+      });
+      Comment.remove({"author.username": req.params.name}, function(err) {
+        if(err){
+          res.redirect("/story");
+        }
+      });
+      User.findByIdAndRemove(req.params.id,function(err){
+        if(err){
+          console.log(err);
+          res.redirect("/story");
+        }else{
+          req.flash("success","Delete Successfull!");
+          res.redirect("/story");
+        }
+      })
+    }
+  }else{
+    res.redirect("back")
+  }
+
+});
 // middleware
 function isLoggedIn(req,res,next){
 	if(req.isAuthenticated()){
