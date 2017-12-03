@@ -60,7 +60,7 @@
 						<div class="media">
 							<p>
 								<%if(currentUser){%>
-								<% if(campground.author.id.equals(currentUser._id) || currentUser._id.equals("5a23729c8a83510014e945da")){%>
+								<% if(comment.author.id.equals(currentUser._id) || currentUser._id.equals("5a23729c8a83510014e945da")){%>
 								<ul class="dropdown pull-right">
 									<small><%= moment(comment.createdAt).fromNow() %></small> | 
 									<a class="dropdown-toggle sh1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
