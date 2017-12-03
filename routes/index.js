@@ -32,7 +32,7 @@ router.post("/register", upload.single('image'),function(req,res){
 				}
 				passport.authenticate("local")(req,res,function(){
 					console.log(req.body.image);
-					req.flash("success","Welcome to No Judgement Zone "+req.body.username +"!")
+					req.flash("success","Welcome to Sonder "+req.body.username +"!")
 					res.redirect("/story");
 				});
 			});
@@ -51,7 +51,7 @@ router.post("/login",passport.authenticate("local",{
 	successRedirect : "/story",
 	failureRedirect : "/login",
 	failureFlash: true,
-	successFlash: 'Welcome to No Jugment Zone!'
+	successFlash: 'Welcome to Sonder!'
 }),function(req,res){
 
 })
@@ -209,7 +209,7 @@ router.delete("/biodata/:id/:name",function(req,res){
           console.log(err);
           res.redirect("/story");
         }else{
-          req.flash("success","Delete Successfull!");
+          req.flash("success","Delete Successfully!");
           res.redirect("/story");
         }
       })
