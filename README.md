@@ -20,7 +20,7 @@ Webiste SONDER bertujuan untuk memberikan tempat bercerita atau menyuarakan pend
 - Download melalui git lalu extract file tersebut lalu buka terminal/cmd anda lalu menuju ke direktori file ini
 
 ```
-cd sonder
+cd path to downloaded sonder file 
 ```
 - Jika tidak ada node modules maka lakukan "npm install" untuk menginstall dependencies
 
