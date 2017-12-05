@@ -139,13 +139,13 @@ h1.font{
 /* parallax landing.ejs*/
 img.imgas{
 	width: 100%;
-	height: 650px;
+	height: 450px;
 }
 
 /*footer*/
 #myFooter{
 	width: 100%;
-	height: 50px; /*140*/
+	height: 50px; /*140
 	/*background-color: #5b6d83;*/
 	background-color: #333;
 	color:white;
@@ -161,7 +161,6 @@ img.imgas{
 }
 
 #myFooter .footer-copyright p{
-	/*margin:10px;*/
 	color: #ccc;
 }
 
@@ -169,13 +168,6 @@ img.imgas{
 	list-style-type: none;
 	padding-left: 0;
 	line-height: 1.7;
-}
-
-#myFooter h5{
-	font-size: 18px;
-	color: white;
-	font-weight: bold;
-	margin-top: 30px;
 }
 
 #myFooter a{
@@ -192,42 +184,29 @@ img.imgas{
 	text-align: center;
 }
 
-#myFooter .social-networks{
-	text-align: center;
-	padding-top: 25px;
-	padding-bottom: 25px;
-}
-
-#myFooter .social-networks a{
-	font-size: 32px;
-	margin-right: 5px;
-	margin-left: 5px;
-	color: #f9f9f9;
-	padding: 10px;
-	transition: 0.2s;
-}
-
-#myFooter .social-networks a:hover{
-	text-decoration: none;
-
-}
-
-#myFooter .facebook:hover{
-	color:#0077e2;
-}
-
-#myFooter .google:hover{
-	color:#ef1a1a;
-}
-
-#myFooter .twitter:hover{
-	color: #00aced;
-}
-
 @media screen and (max-width: 767px){
 	#myFooter {
 		text-align: center;
 	}
+}
+
+.ulcem{
+	text-align: justify;
+}
+
+.btnjin{
+	background-color: transparent;
+	border-color: 1px solid white;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.btnjin:hover{
+	background-color: lightgrey;
+	border-color: 1px solid white;
+	color: white;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 /* CSS used for positioning the footers at the bottom of the page. */
@@ -809,10 +788,6 @@ body .no-padding {
 
 .sh1{
 	color: black;
-}
-
-.ctnshow{
-	height: 100%;
 }
 
 .ctnshow1{

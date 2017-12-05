@@ -8,7 +8,7 @@ var router=express.Router();
 router.get("/",function(req,res){	
 	console.log(req.user);
 	// ini mengambil data user
-	Campground.find({},function(err,allcampgrounds){
+	Campground.find().sort({'createdAt': 'asc'}).exec(function(err,allcampgrounds){
 	// kalau mau cari spesifik isi objectnya
 	if(err){
 		console.log(err);
